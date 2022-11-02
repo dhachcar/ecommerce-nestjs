@@ -9,11 +9,11 @@ import { UserEntity } from '../entities/user.entity';
 export class AuthService {
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
-    private jwt: JwtService,
+    private readonly userRepository: Repository<UserEntity>,
+    private readonly jwt: JwtService,
   ) {}
 
-  async signup(user: UserEntity): Promise<UserEntity> {
+  public async signup(user: UserEntity): Promise<UserEntity> {
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(user.password, salt);
 
@@ -22,7 +22,7 @@ export class AuthService {
     return await this.userRepository.save(user);
   }
 
-  async validateUser(username: string, password: string): Promise<any> {
+  public async validateUser(username: string, password: string): Promise<any> {
     const foundUser = await this.userRepository.findOneBy({
       username: username,
     });
@@ -39,7 +39,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
+  public async login(user: any) {
     const payload = {
       username: user.username,
       sub: user.id,
