@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JWT_CONSTANTS } from './constants/constants';
+import { AuthController } from './controllers/auth.controller';
 import { UserEntity } from './entities/user.entity';
 import { AuthService } from './services/auth.service';
 
@@ -16,5 +17,6 @@ import { AuthService } from './services/auth.service';
     TypeOrmModule.forFeature([UserEntity]),
   ],
   providers: [AuthService],
+  controllers: [AuthController],
 })
 export class AuthModule {}
