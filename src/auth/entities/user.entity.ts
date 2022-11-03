@@ -31,11 +31,11 @@ export class UserEntity {
   @UpdateDateColumn()
   updtedAt: string;
 
-  @OneToMany((type) => CartEntity, (cart) => cart.id)
+  @OneToMany(() => CartEntity, (cart) => cart.id)
   @JoinColumn()
   cart: CartEntity[];
 
-  @OneToOne((type) => OrderEntity, (order) => order.id)
+  @OneToOne(() => OrderEntity, (order) => order.id)
   @JoinColumn()
   order: OrderEntity;
 }
